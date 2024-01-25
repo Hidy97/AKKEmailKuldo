@@ -13,13 +13,12 @@ class FajlKivalasztView {
     #megjelenit() {
         let txt = "";
         txt += `<span class="kivalaszt"><input type="file" id="myfile" name="myfile" multiple>`
-        txt += `</span>`
-        //console.log("ez a megjelenit függvény")
+        //txt += `</span><span id="valasztottfajl"><button id="kuldGomb" onclick="uploadFiles()">Küldés</button>`
+        txt += `</span><input type="submit" value="Küldés" id="kuldgomb">`
         this.divElem.append(txt);
-        //this.#fajlnev();
-        //this.#mappaneve();
     }
 
+    /**
     #fajlnev() {
         $("#myfile").change(function (event) {
             //console.log(event.target.files[0].name)
@@ -40,15 +39,7 @@ class FajlKivalasztView {
             //$("#kiiras").text(kod)
         })
     }
-
-    #mappaneve() {
-        $("#myfile").change(function (event) {
-            
-            let mappaneve = (event.target.files[0].path)
-            
-            $("#mappanevKiir").text(mappaneve)
-        })
-    }
+     */
 }
 
 export default FajlKivalasztView;

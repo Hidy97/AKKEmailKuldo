@@ -12,16 +12,33 @@ class Controller {
         new FajlKivalasztView(szuloELEM);
          */
 
+        /**
         this.dataService = new DataService();
         this.dataService.getAxiosData(ALAPVEGPONT, this.megjelenit);
+        */
+
+
 
         const szuloELEM = $("#tablazatKiir")
         new fajlNevek(szuloELEM);
-    }
 
-    megjelenit(list){
-        //console.log(list);
-        new TablaView(list, $("article form"));
+        /*
+        $( "#kuldgomb" ).on( "click", function() {
+            alert( "Handler for `click` called." );
+          } );
+        */
+
+        /**
+         * gombra
+         */
+
+        $(window).on("kuldes", (event) => {
+            //minta
+            //this.dataService.postData(szuloELEM, this.urlapView.getUrlapAdatok());
+            this.dataService.postData(ALAPVEGPONT, this.fajlNevek.getNev());
+            //this.urlapView.getUrlapAdatok();
+            this.fajlNevek.getNev();
+        })
     }
 }
 

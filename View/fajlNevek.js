@@ -1,39 +1,28 @@
 import FajlKivalasztView from "./FajlKivalasztView.js";
 
-class fajlNevek{
+class fajlNevek {
 
     #ujFajl;
-    fajlNevekTomb = [];
+    #fajlNevekTomb = [];
 
-    constructor(szuloElem){
+    constructor(szuloElem) {
         this.fajlElem = $("#fajlfeltoltes")
         this.#ujFajl = new FajlKivalasztView(this.fajlElem);
         this.divElem = szuloElem
         this.fajlElem = this.divElem.children("last-child");
-        this.fajlNevekTomb = ["", "", "", ""]
-        console.log(this.fajlNevekTomb)
+        //this.fajlNevekTomb = this.uploadFiles();
+        console.log(this.#fajlNevekTomb)
         this.#fajlnev();
     }
 
-    tombfeltolt(){
-        for (let index = 0; index < this.fajlNevekTomb.length; index++) {
-            this.fajlNevekTomb[index] = this.#fajlnev();
-        }
+    uploadFiles() {
+        const fileInput = this.divElem.children("#fileInput");
+        this.#fajlNevekTomb = fileInput.files;
+        console.log(this.#fajlNevekTomb)
     }
 
-
-    megjelenites(ujFajl){
-        let txt = ""
-        txt += "<tr>";
-        for (let index = 0; index < this.#ujFajl.length; index++) {
-            ujFajl = this.#fajlnev();
-            txt += `<td>${ujFajl}</td>`;
-            //this.fajlNevekTomb.append(ujFajl);
-            this.append(this.fajlNevekTomb);
-        }
-        txt += "</tr>";
-
-        $("#tablazatKiir").append(txt)
+    getNev(){
+        return this.#fajlNevekTomb;
     }
 
     #fajlnev() {
@@ -53,11 +42,19 @@ class fajlNevek{
 
             }
             $("#fajlnevKiir").text(fajlneve)
-            this.append(this.fajlNevekTomb);
+            //push-t append-et nem ismeri fel
+            //this.fajlNevekTomb.push(fajlneve);
             console.log(fajlneve)
+            //console.log(this.fajlNevekTomb)
             //$("#kiiras").text(kod)
         })
     }
+
+    #esemenyTrigger(esemenyneve) {
+        const esemeny = new CustomEvent("kuldes", { detail: this });
+        window.dispatchEvent(esemeny);
+    }
+
 }
 
 export default fajlNevek;
