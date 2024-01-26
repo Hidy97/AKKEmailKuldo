@@ -33,6 +33,7 @@ class Controller {
          */
 
         $(window).on("kuldes", (event) => {
+            event.preventDefault();
             //minta
             //this.dataService.postData(szuloELEM, this.urlapView.getUrlapAdatok());
             this.dataService.postData(ALAPVEGPONT, this.fajlNevek.getNev());
