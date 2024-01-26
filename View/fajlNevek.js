@@ -21,7 +21,7 @@ class fajlNevek {
         console.log(this.#fajlNevekTomb)
     }
 
-    getNev(){
+    getNev() {
         return this.#fajlNevekTomb;
     }
 
@@ -29,7 +29,8 @@ class fajlNevek {
         $("#myfile").change(function (event) {
             //console.log(event.target.files[0].name)
             let fajlneve = (event.target.files[0].name)
-            let feldolgozottFajl = fajlneve.split(' ')
+            const feldolgozottFajl = fajlneve.split(' ')
+            console.log(fajlneve)
             let kod = "";
             //ez végig fut a keletkezett tömbön, ami a 'feldolgozottFajl'
             for (let index = 0; index < feldolgozottFajl.length; index++) {
@@ -37,14 +38,16 @@ class fajlNevek {
                 //bízunk benne, hogy mindenkinek az egyedi kódja lesz csak zárójelben :D
                 if (feldolgozottFajl[index].indexOf("(") > -1) {
                     //console.log(feldolgozottFajl[index])
-                    kod += feldolgozottFajl[index]
+                    //slice-al levesszük a zárójelet miután megtaláltuk
+                    kod += feldolgozottFajl[index].slice(1, -1)
                 }
 
             }
             $("#fajlnevKiir").text(fajlneve)
             //push-t append-et nem ismeri fel
             //this.fajlNevekTomb.push(fajlneve);
-            console.log(fajlneve)
+            //console.log(fajlneve)
+            console.log(kod)
             //console.log(this.fajlNevekTomb)
             //$("#kiiras").text(kod)
         })
